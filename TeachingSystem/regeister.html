@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>登陆页面</title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="js/jquery-1.12.1.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <style></style>
+
+</head>
+
+<body>
+<img class="background" src="images/40047.jpg">
+<div class="">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="sigin-div">
+
+                <p class="sigin-title"><strong>教学管理系统</strong></p>
+
+
+                <div class="form-group input-height">
+
+                    <input type="text" class="form-control" id="username" name="username" placeholder="账号">
+
+                </div>
+
+                <div class="form-group">
+
+                    <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+
+                </div>
+
+                <div class="form-group">
+
+                    <input type="password" class="form-control" id="samepassword" name="samepassword"
+
+                           placeholder="再次输入密码">
+
+                </div>
+
+                <div class="form-group checkbox-group">
+
+                    <input type="radio" name="radioGroup" value="系统管理员">
+
+                    系统管理员 &nbsp;&nbsp;
+
+                    <input type="radio" name="radioGroup" value="教师">
+
+                    教师 &nbsp;&nbsp;
+
+                    <input type="radio" name="radioGroup" value="学生">
+
+                    学生
+
+                </div>
+
+                <div class="form-group sub">
+
+                    <button type="submit" class="btn btn-primary btn-submit" onclick="chk_regeister()">注册</button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="copyright">
+        Copyright © 2013-2016 林旭源 All Rights Reserved.
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    function chk_regeister() {
+
+        var username = document.getElementById("username").value;
+
+        var password = document.getElementById("password").value;
+
+        var samepassword = document.getElementById("samepassword").value;
+
+
+        var identify = document.getElementsByName("radioGroup");
+
+
+        var identifyChecked;
+
+        for (var i = 0; i < 3; i++) {
+
+            if (identify[i].checked == true) {
+
+                identifyChecked = identify[i].value;
+
+            }
+
+        }
+
+        console.log(identifyChecked);
+
+        if (username == "") {
+
+            $('<div id="msg" />').html("用户名不能为空！").appendTo('.sub').fadeOut(2000);
+
+            $("#username").focus();
+
+            return false;
+
+        }
+
+        if (password == "" || samepassword == "") {
+
+            $('<div id="msg" />').html("密码不能为空！").appendTo('.sub').fadeOut(2000);
+
+            $("#password").focus();
+
+            return false;
+
+        }
+
+        if (password != samepassword) {
+
+            $('<div id="msg" />').html("两次输入的密码不一致！").appendTo('.sub').fadeOut(2000);
+
+            return false;
+
+        }
+
+
+        $.ajax({
+
+            type: "POST",
+
+            url: "regeistercheck.php",
+
+            dataType: "json",
+
+            data: {"username": username, "password": password, "radioGroup": identifyChecked},
+
+            beforeSend: function () {
+
+                $('<div id="msg" />').addClass("loading").html("正在注册...").css("color", "#999")
+
+                        .appendTo('.sub');
+
+            },
+
+            success: function (json) {
+
+                if (json.success == 1) {
+
+
+                    window.location.href = "index.php";
+
+                    alert("注册成功");
+
+                } else {
+
+                    $("#msg").remove();
+
+                    alert("注册失败");
+
+                }
+
+                //   window.location = "main.php"
+
+
+            },
+
+            error: function (jqXHR, textStatus, errorThrown) {
+
+                /*错误信息处理*/
+
+                alert("错误信息".textStatus);
+
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+
+</html>
+

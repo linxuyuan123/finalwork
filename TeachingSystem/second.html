@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<title>bootstrap学习</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+
+<link rel="stylesheet" href="css/style.css"/>
+
+<script src="js/jquery-1.12.1.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="col-sm-6">
+
+  <button class="btn btn-info" type="button" data-toggle="modal" data-target="#uploadModal" rel="/build/uploadModal"><i class="fa fa-upload"></i> 上传</button>
+
+  <button class="btn btn-default" type="button" data-toggle="modal" data-target="#foldModal"><i class="fa fa-folder-o"></i> 新建文件夹</button>
+
+</div>
+
+
+
+<!-- 上传文件的对话框 -->
+
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" 
+
+   aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <button type="button" class="close" 
+
+               data-dismiss="modal" aria-hidden="true"> &times; </button>
+
+        <h4 class="modal-title" id="myModalLabel"> 上传新的文件 </h4>
+
+      </div>
+
+      <br>
+
+      <div class="form-group col-md-5">
+
+        <input type="file" class="form-control" id="password"   placeholder="">
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" 
+
+               data-dismiss="modal">关闭 </button>
+
+        <button type="button" class="btn btn-primary"> 提交更改 </button>
+
+      </div>
+
+    </div>
+
+    <!-- /.modal-content --> 
+
+  </div>
+
+</div>
+
+<!-- 上传文件的对话框结束 --> 
+
+
+
+<!-- 新建文件夹对话框 -->
+
+<div class="modal fade" id="foldModal" tabindex="-1" role="dialog" 
+
+   aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <button type="button" class="close" 
+
+               data-dismiss="modal" aria-hidden="true"> &times; </button>
+
+        <h4 class="modal-title" id="ModalLabel"> 在目录下新建一个文件夹 </h4>
+
+      </div>
+
+      <div class="form-group input-height">
+
+        <input type="text" class="form-control" id="foldName"  placeholder="请输入文件名" >
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" 
+
+               data-dismiss="modal">关闭 </button>
+
+        <button type="button" class="btn btn-primary"> 提交更改 </button>
+
+      </div>
+
+    </div>
+
+    <!-- /.modal-content --> 
+
+  </div>
+
+</div>
+
+<!-- 上传文件的对话框结束 -->
+
+
+
+</body>
+
+</html>
+

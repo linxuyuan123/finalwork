@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js无间断的图片滚动</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .marqueeleft {
+            padding: 0px 0px 0px 2px;
+            width: 500px;
+            overflow: hidden;
+        }
+
+        .marqueeleft ul {
+            float: left;
+        }
+
+        .marqueeleft ul li {
+            list-style: none;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="marquee1" class="marqueeleft">
+    <div style="width:8000px;">
+        <ul id="marquee1_1">
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="#"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219155134201-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/191.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-16021915461V07-lp.jpg"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/190.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-16021915432C40-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/189.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219154200Y6-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/187.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219153PR09-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/188.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219154022b4-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/186.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-16021915351H31-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/185.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219153302M9-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/184.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219153206252-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/183.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219153113358-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/182.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219153021c5-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/181.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219152922615-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+            <li>
+                <div style="width:118px;height:80px" class="fang">
+                    <div style="width:140px;height:110px" class="picFit"><a
+                            href="/html/xiangmuzhanshi/2016/0219/180.html"> <img width="118" height="80" border="0"
+                                                                                 src="http://www.zhaodongfeng.com/uploads/allimg/160219/1-160219152R02b-lp.JPG"
+                                                                                 style="width: 118px;"> </a></div>
+                </div>
+            </li>
+
+
+        </ul>
+        <ul id="marquee1_2">
+        </ul>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    //js无缝滚动代码
+    function marquee(i, direction) {
+        var obj = document.getElementById("marquee" + i);
+        var obj1 = document.getElementById("marquee" + i + "_1");
+        var obj2 = document.getElementById("marquee" + i + "_2");
+        if (direction == "up") {
+            if (obj2.offsetTop - obj.scrollTop <= 0) {
+                obj.scrollTop -= (obj1.offsetHeight + 20);
+            } else {
+                var tmp = obj.scrollTop;
+                obj.scrollTop++;
+                if (obj.scrollTop == tmp) {
+                    obj.scrollTop = 1;
+                }
+            }
+        } else {
+            if (obj2.offsetWidth - obj.scrollLeft <= 0) {
+                obj.scrollLeft -= obj1.offsetWidth;
+            } else {
+                obj.scrollLeft++;
+            }
+        }
+    }
+
+    function marqueeStart(i, direction) {
+        var obj = document.getElementById("marquee" + i);
+        var obj1 = document.getElementById("marquee" + i + "_1");
+        var obj2 = document.getElementById("marquee" + i + "_2");
+
+        obj2.innerHTML = obj1.innerHTML;
+        var marqueeVar = window.setInterval("marquee(" + i + ", '" + direction + "')", 20);
+        obj.onmouseover = function () {
+            window.clearInterval(marqueeVar);
+        }
+        obj.onmouseout = function () {
+            marqueeVar = window.setInterval("marquee(" + i + ", '" + direction + "')", 20);
+        }
+    }
+</script>
+<script type="text/javascript">marqueeStart(1, "left");</script>
+</html>

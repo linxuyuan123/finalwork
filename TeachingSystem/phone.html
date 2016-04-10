@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>jquery例子</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<script src="js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=52992cf47e6200fcb489310b44cc59a4"></script>
+<style>
+html {
+	width: 100%;
+	height: 100%;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Microsoft YaHei";
+}
+header {
+	background: #64A4E7;
+	width: 100%;
+	height: 40px;
+}
+.header_box {
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 40px;
+}
+.menu-img {
+	padding-left: 3%;
+	float: left;
+	margin-top: 10px;
+}
+.rightbar {
+	z-index: 150;
+	width: 100px;
+	height: 100%;
+}
+.nav {
+	position: relative;
+	width: 100px;
+	background: #e9e9e9;
+	left: -100px;
+}
+.nav li {
+	text-align: center;
+	list-style: none;
+	height: 50px;
+	color: #000000;
+	line-height: 50px;
+}
+.nav li:hover {
+	background: #3DC1F0;
+}
+.content {
+	width: 100%;
+}
+.maskpage {
+	display: none;
+	position: fixed;
+	top: 40px;
+	width: 100%;
+	height: 100%;
+	z-index: 100; /* 此处的图层要大于页面 */
+	background: rgba(0, 0, 0, 0.3);
+}
+/*登陆框样式  */
+.login-box {
+	margin: 0 auto;
+	margin-top: 10%;
+	max-width: 390px;
+	padding-left: 60px;
+	padding-right: 60px;
+}
+.login-box p {
+	color: #64A4E7;
+	float: right;
+	padding: 10px 0;
+}
+.login-input {
+	display: block;
+	border-radius: 4px;
+	height: 40px;
+	width: 100%;
+	font-size: 18px;
+	text-indent: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.btn-submit {
+	display: block;
+	margin-left: 32%;
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+	padding: 6px 27px;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	cursor: pointer;
+}
+/* 地图容器 */
+#map-container {
+	margin: 0 auto;
+	height: 500px;
+	padding-right: 30px;
+	padding-left: 30px;
+}
+#container {
+	border: 1px solid #f3f3f3;
+	box-shadow: 0px 0px 4px #e3e3e3;
+	margin: 0 auto;
+	width: 100%;
+	height: 300px;
+	max-width: 600px;
+}
+#result {
+	height: 50px;
+}
+.clear {
+	clear: both;
+}
+</style>
+</head>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".menu-img").click(function() {
+				
+			if(  $(".nav").css("left") =='-100px'  )
+			
+			{	$(".maskpage").fadeIn(300);
+				$(".nav").animate({left:'0px'});
+			}else{
+					$(".maskpage").fadeOut(300);
+				$(".nav").animate({left:'-100px'});
+				}
+			});
+			
+			$(".maskpage").click(function(){
+					$(".maskpage").fadeOut(300);
+				$(".nav").animate({left:'-100px'});
+				
+        
+    });
+				
+				
+			});
+
+	
+
+</script>
+<script type="text/javascript">
+	  function ininialize(){
+		  
+		var map,geolocation;
+		//加载地图，调用浏览器定位服务
+		map= new AMap.Map('container',{resizeEnable:true});
+		map.plugin("AMap.Geolocation",function(){
+			geolocation = new AMap.Geolocation( {
+				enableHighAccuracy:true,//是否使用高精度定位，默认true
+				timeout:10000, //超过10秒后停止定位，默认无穷大
+				convert:true,  //自动偏移坐标，偏移后的坐标为高德坐标
+				maximumAge:0,           //定位结果缓存0毫秒，默认：0
+				showMarker:true, //定位成功后在定位到的位置显示标记点标记，默认true
+				showCircle:true, //定位成功后用圆圈表示定位的精度范围，默认为true
+				panToLocation:true, //定位成功后将定位到的位置作为地图中心点，默认为true
+				buttonOffest: new AMap.Pixel(19,20), //定位按钮与设置的停靠位置偏移量，默认：Pixel(10,20)
+				zoomToAccuracy:true, //定位成功后调整视野范围使定位位置及精度范围视野内可见,默认false
+				buttonPosition:'RB'
+			});
+			map.addControl(geolocation);
+			geolocation.getCurrentPosition();
+			AMap.event.addListener(geolocation,'complete',onComplete); //返回定位信息
+			AMap.event.addListener(geolocation,'errorr',onError); //返回定位错误信息
+		});
+			
+		/*
+		 *获取当前位置信息
+		 */
+		function getCurrentPosition () {
+			geolocation.getCurrentPosition();
+		};
+		
+		//解析定位结果
+		function onComplete (data){
+			var str=["定位成功"];
+			str.push("经度:"+data.position.getLng());
+			str.push("纬度:"+data.position.getLat());
+			str.push("经度:"+data.accuracy+"米");
+			str.push("是否经过偏移:"+(data.isConverted?"是":"否"));
+			document.getElementById("result").innerHTML=str.join("<br/>");
+		}
+		//解析定位错误信息
+		function onError(data){
+			var str ='<p>定位失败</p>';
+			str += '<P>错误信息';
+			switch (data.info){
+				case 'PERMISSION_DENIED':
+					str += '浏览器阻止了定位操作';
+					break;
+				case 'POSITION_UNAVAILBLE':
+					str += '无法获得当前位置';
+					break;
+				case 'TIMEOUT':
+					str += '定位超时';
+					break;
+				default:
+					str += '未知错误';
+					break;
+			}
+			str +='</p>';
+			result.innerHtml = str;
+		}
+	  }
+
+</script>
+<body onload="ininialize()">
+<header>
+  <div class="header_box"> <img class="menu-img" src="images/menu_icon.png" width="20px" height="20px" /> <span>学生信息管理系统</span> </div>
+</header>
+<div class="content">
+  <div class="maskpage">
+    <div class="rightbar">
+      <ul class="nav" >
+        <li><a href="#">舍长管理</a></li>
+        <li><a>成绩查询</a></li>
+        <li><a>选课查询</a></li>
+        <li><a>成绩查询</a></li>
+        <li><a>修改密码</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="login-box">
+    <input type="text" name="username" class="login-input" placeholder="账号"/>
+    <br/>
+    <input type="text" name="password" class="login-input" placeholder="密码"/>
+    <br/>
+    <input type="submit" value="登陆" class="btn-submit">
+    <p>显示我的位置</p>
+  </div>
+  <div class="clear"></div>
+  <div id="map-container">
+    <div id="container"></div>
+    <div id="result"></div>
+  </div>
+</div>
+</body>
+</html>
